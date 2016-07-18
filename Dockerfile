@@ -11,11 +11,8 @@ ADD ./wkhtml2pdf /wkhtml2pdf
 # Create Jenkins user
 RUN useradd jenkins
 
-# Install first dependencies
-RUN apt-get update && apt-get install -y openssh-client git build-essential
-
 # Install dependencies
-RUN sudo apt-get install -y cpanminus libssl-dev libexpat1-dev libgd-perl libgmp3-dev libapache2-mod-perl2 libmysqlclient-dev xfonts-base xfonts-75dpi libxrender1 fontconfig
+RUN sudo apt-get install -y openssh-client git build-essential cpanminus libssl-dev libexpat1-dev libgd-perl libgmp3-dev libapache2-mod-perl2 libmysqlclient-dev xfonts-base xfonts-75dpi libxrender1 fontconfig python-pip
 
 # Create directories
 RUN mkdir -p /usr/include/apache2 /usr/local/lib/site_perl
@@ -32,4 +29,8 @@ RUN dzil listdeps --author --missing | sudo cpanm --no-skip-satisfied -n
 # Install ChartDirector
 RUN sudo tar -jxf /chartdirector/chartdir.tar.bz2 -C/usr/local/lib/site_perl
 
+# Install WKHTML2PDF
 RUN dpkg -s wkhtmltox 2>/dev/null >/dev/null || sudo dpkg -i /wkhtml2pdf/wkhtmltox-0.12.2.1_linux-trusty-amd64.deb
+
+# Installing crontab checker
+RUN pip install chkcrontab
