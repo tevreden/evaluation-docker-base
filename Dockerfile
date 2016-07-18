@@ -12,7 +12,7 @@ ADD ./wkhtml2pdf /wkhtml2pdf
 RUN useradd jenkins
 
 # Install dependencies
-RUN sudo apt-get install -y openssh-client git build-essential cpanminus libssl-dev libexpat1-dev libgd-perl libgmp3-dev libapache2-mod-perl2 libmysqlclient-dev xfonts-base xfonts-75dpi libxrender1 fontconfig python-pip
+RUN sudo apt-get update && apt-get install -y openssh-client git build-essential cpanminus libssl-dev libexpat1-dev libgd-perl libgmp3-dev libapache2-mod-perl2 libmysqlclient-dev xfonts-base xfonts-75dpi libxrender1 fontconfig python-pip
 
 # Create directories
 RUN mkdir -p /usr/include/apache2 /usr/local/lib/site_perl
