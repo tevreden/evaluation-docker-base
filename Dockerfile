@@ -20,7 +20,7 @@ RUN mkdir -p /var/log/evaluation && sudo chown jenkins:jenkins /var/log/evaluati
 
 # Install CPAN modules
 RUN cpanm --no-skip-satisfied -n Class::Method::Modifiers YAML::XS
-RUN cpanm --no-skip-satisfied -n JSTOWE/TermReadKey-2.32.tar.gz CPAN::Uploader || { cat ~/.cpanm/build.log ; false ; } ;
+RUN cpanm --no-skip-satisfied -n JSTOWE/TermReadKey-2.37.tar.gz CPAN::Uploader || { cat ~/.cpanm/build.log ; false ; } ;
 RUN cpanm --no-skip-satisfied -n Dist::Zilla
 
 RUN dzil authordeps --missing | sudo cpanm --no-skip-satisfied -n
